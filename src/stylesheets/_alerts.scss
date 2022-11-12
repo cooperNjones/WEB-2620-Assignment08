@@ -1,0 +1,31 @@
+@import "colors";
+
+$alert-color: ("primary": $pColor1, "success": $sColor1, "danger": $dColor1);
+
+@mixin make-alert($c: white, $b: black){
+
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid $b;
+  background-color: $c;
+  @if $c == $white{
+    color: black;
+  }
+  @else{
+    color: white;
+  }
+  padding: 10px 15px;
+}
+
+.alert{
+  @include make-alert();
+
+  @each $name, $color in $alert-color{
+    &.alert-#{$name}{
+      color: $white;
+      border: 1px solid $color;
+      background-color: $color;
+    }
+  }
+}
+  
